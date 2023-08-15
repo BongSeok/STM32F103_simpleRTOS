@@ -1,0 +1,8 @@
+task.c:22:6:Kernel_task_init	2
+task.c:38:10:Kernel_task_create	2
+task.c:52:21:Scheduler_round_robin_algorithm	1
+task.c:60:6:Kernel_task_scheduler	1
+task.c:68:37:Kernel_task_context_switching	1
+task.c:74:37:Save_context	1
+task.c:86:37:Restore_context	1
+task.c:98:6:Kernel_task_start	1

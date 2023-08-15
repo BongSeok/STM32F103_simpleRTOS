@@ -1,7 +1,11 @@
-#include "stdint.h"
-#include "stdbool.h"
+//#include "stdint.h"
+//#include "stdbool.h"
 
-#include "ARMv7AR.h"
+//#include "ARMv7AR.h"
+
+#include <stdbool.h>
+#include <stdlib.h>
+#include "main.h"
 #include "task.h"
 
 static KernelTcb_t	sTask_list[MAX_TASK_NUM];
@@ -21,13 +25,13 @@ void Kernel_task_init(void)
 	sCurrent_tcb_index = 0;
 
 	for(uint32_t i = 0; i < MAX_TASK_NUM; i++){
-		sTask_list[i].stack_base = (uint8_t*)(TASK_STACK_START + (i * USR_TASK_STACK_SIZE));
+		sTask_list[i].stack_base = (uint8_t*)malloc(USR_TASK_STACK_SIZE);//(TASK_STACK_START + (i * USR_TASK_STACK_SIZE));
 		sTask_list[i].sp = (uint32_t)sTask_list[i].stack_base + USR_TASK_STACK_SIZE - 4;
 
 		sTask_list[i].sp -= sizeof(KernelTaskContext_t);
 		KernelTaskContext_t* ctx = (KernelTaskContext_t*)sTask_list[i].sp;
 		ctx->pc = 0;
-		ctx->spsr = ARM_MODE_BIT_SYS;
+		ctx->psr = 0x01000000;//ARM_MODE_BIT_SYS;
 	}
 }
 
@@ -67,26 +71,26 @@ static __attribute__ ((naked)) void Kernel_task_context_switching(void)
 	__asm__ ("B Restore_context");
 }
 
-static __attribute ((naked)) void Save_context(void)
+static __attribute__ ((naked)) void Save_context(void)
 {
 	__asm__ ("PUSH {lr}");
 	__asm__ ("PUSH {r0, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12}");
-	__asm__ ("MRS   r0, cpsr");
+	__asm__ ("MRS   r0, psr");
 	__asm__ ("PUSH {r0}");
-
 	__asm__ ("LDR   r0, =sCurrent_tcb");
 	__asm__ ("LDR   r0, [r0]");
-	__asm__ ("STMIA r0!, {sp}");
+	__asm__ ("MRS   r1, msp");
+	__asm__ ("STR   r1, [r0]");
 }
 
-static __attribute ((naked)) void Restore_context(void)
+static __attribute__ ((naked)) void Restore_context(void)
 {
 	__asm__ ("LDR   r0, =sNext_tcb");
-	__asm__ ("LDR	r0, [r0]");
-	__asm__ ("LDMIA r0!, {sp}");
-
+	__asm__ ("LDR   r0, [r0]");
+	__asm__ ("LDR   r1, [r0]");
+	__asm__ ("MSR   msp, r1");
 	__asm__ ("POP  {r0}");
-	__asm__ ("MSR	cpsr, r0");
+	__asm__ ("MSR   psr, r0");
 	__asm__ ("POP  {r0, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12}");
 	__asm__ ("POP  {pc}");
 }

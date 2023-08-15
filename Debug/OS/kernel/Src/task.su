@@ -1,0 +1,8 @@
+../OS/kernel/Src/task.c:22:6:Kernel_task_init	16	static
+../OS/kernel/Src/task.c:38:10:Kernel_task_create	24	static
+../OS/kernel/Src/task.c:52:21:Scheduler_round_robin_algorithm	4	static
+../OS/kernel/Src/task.c:60:6:Kernel_task_scheduler	8	static
+../OS/kernel/Src/task.c:68:37:Kernel_task_context_switching	0	static,ignoring_inline_asm
+../OS/kernel/Src/task.c:74:37:Save_context	0	static,ignoring_inline_asm
+../OS/kernel/Src/task.c:86:37:Restore_context	0	static,ignoring_inline_asm
+../OS/kernel/Src/task.c:98:6:Kernel_task_start	4	static,ignoring_inline_asm

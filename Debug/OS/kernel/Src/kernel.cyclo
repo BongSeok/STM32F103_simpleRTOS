@@ -1,0 +1,2 @@
+kernel.c:8:6:Kernel_start	1
+kernel.c:13:6:Kernel_yield	1

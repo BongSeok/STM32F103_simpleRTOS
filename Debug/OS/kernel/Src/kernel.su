@@ -1,0 +1,2 @@
+../OS/kernel/Src/kernel.c:8:6:Kernel_start	8	static
+../OS/kernel/Src/kernel.c:13:6:Kernel_yield	8	static

@@ -1,6 +1,7 @@
-#include "stdint.h"
-#include "stdbool.h"
+//#include "stdint.h"
+//#include "stdbool.h"
 
+#include "main.h"
 #include "kernel.h"
 #include "task.h"
 
