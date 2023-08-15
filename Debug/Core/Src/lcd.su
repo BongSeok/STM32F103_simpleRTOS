@@ -1,0 +1,5 @@
+../Core/Src/lcd.c:24:13:DispSel	16	static
+../Core/Src/lcd.c:34:13:DispDataWr	16	static
+../Core/Src/lcd.c:91:6:DispInit	16	static
+../Core/Src/lcd.c:113:13:DispCursorSet	16	static
+../Core/Src/lcd.c:126:6:DispStr	24	static

@@ -27,6 +27,7 @@
 #include <string.h>
 #include "kernel.h"
 #include "task.h"
+#include "lcd.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -159,6 +160,7 @@ static void Kernel_init(void)
 
 	Kernel_task_init();
 	Kernel_event_flag_init();
+	Kernel_msgQ_init();
 
 	taskId = Kernel_task_create(User_task0);
 	if(NOT_ENOUGH_TASK_NUM == taskId){
@@ -234,6 +236,10 @@ void User_task1(void)
 {
 	vPrintString("User task #1 \r\n");
 
+	DispInit(2, 16);
+	DispStr(0, 0, "simpleRTOS      ");
+	DispStr(1, 0, "                ");
+
 	uint8_t cmdlen = 0;
 	uint8_t cmd[16] = {0};
 
@@ -246,6 +252,8 @@ void User_task1(void)
 			Kernel_recv_msg(KernelMsgQ_Task1, cmd, cmdlen);
 			vPrintString("\r\nRecv Cmd : ");
 			vPrintString((const char*)cmd);
+			DispStr(1, 0, "                ");
+			DispStr(1, 0, (char*)cmd);
 			break;
 		case KernelEventFlag_Empty:
 			break;
