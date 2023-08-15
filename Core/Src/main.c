@@ -24,6 +24,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdbool.h>
+#include <string.h>
 #include "kernel.h"
 #include "task.h"
 /* USER CODE END Includes */
@@ -156,6 +157,7 @@ static void Kernel_init(void)
 
 	Kernel_task_init();
 	Kernel_event_flag_init();
+	Kernel_msgQ_init();
 
 	taskId = Kernel_task_create(User_task0);
 	if(NOT_ENOUGH_TASK_NUM == taskId){
@@ -179,11 +181,44 @@ void User_task0(void)
 {
 	vPrintString("User task #0 \r\n");
 
+	uint8_t cmdBuf[16];
+	uint32_t cmdBufIdx = 0;
+	uint8_t uartch= 0;
+
 	while(true){
 		KernelEventFlag_t handle_event = Kernel_wait_events(KernelEventFlag_UartIn);
 		switch(handle_event){
 		case KernelEventFlag_UartIn:
-			vPrintString("\r\nEvent handled \r\n");
+			//vPrintString("\r\nEvent handled \r\n");
+			Kernel_recv_msg(KernelMsgQ_Task0, &uartch, 1);
+			if(uartch == '\n'){
+				cmdBuf[cmdBufIdx] = '\0';
+
+				//Kernel_send_msg(KernelMsgQ_Task1, &cmdBufIdx, 1);
+				//Kernel_send_msg(KernelMsgQ_Task1, cmdBuf, cmdBufIdx);
+				//Kernel_send_events(KernelEventFlag_CmdIn);
+				while(true){
+					Kernel_send_events(KernelEventFlag_CmdIn);
+					if(false == Kernel_send_msg(KernelMsgQ_Task1, &cmdBufIdx, 1)){
+						Kernel_yield();
+					}
+					else if(false == Kernel_send_msg(KernelMsgQ_Task1, cmdBuf, cmdBufIdx)){
+						uint8_t rollback;
+						Kernel_recv_msg(KernelMsgQ_Task1, &rollback, 1);
+						Kernel_yield();
+					}
+					else{
+						break;
+					}
+				}
+
+				cmdBufIdx = 0;
+			}
+			else{
+				cmdBuf[cmdBufIdx] = uartch;
+				cmdBufIdx++;
+				cmdBufIdx %= 16;
+			}
 			break;
 		case KernelEventFlag_Empty:
 			break;
@@ -198,7 +233,24 @@ void User_task1(void)
 {
 	vPrintString("User task #1 \r\n");
 
+	uint8_t cmdlen = 0;
+	uint8_t cmd[16] = {0};
+
 	while(true){
+		KernelEventFlag_t handle_event = Kernel_wait_events(KernelEventFlag_CmdIn);
+		switch(handle_event){
+		case KernelEventFlag_CmdIn:
+			memset(cmd, 0, 16);
+			Kernel_recv_msg(KernelMsgQ_Task1, &cmdlen, 1);
+			Kernel_recv_msg(KernelMsgQ_Task1, cmd, cmdlen);
+			vPrintString("\r\nRecv Cmd : ");
+			vPrintString((const char*)cmd);
+			break;
+		case KernelEventFlag_Empty:
+			break;
+		default:
+			break;
+		}
 		Kernel_yield();
 	}
 }

@@ -1,0 +1,5 @@
+msg.c:12:6:Kernel_msgQ_init	2
+msg.c:22:6:Kernel_msgQ_is_empty	3
+msg.c:35:6:Kernel_msgQ_is_full	3
+msg.c:48:6:Kernel_msgQ_enqueue	3
+msg.c:67:6:Kernel_msgQ_dequeue	3

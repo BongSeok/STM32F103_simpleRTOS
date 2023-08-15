@@ -5,6 +5,7 @@
 
 typedef enum KernelEventFlag_t {
 	KernelEventFlag_UartIn			= 0x00000001,
+	KernelEventFlag_CmdIn			= 0x00000002,
 
 	KernelEventFlag_Empty			= 0x00000000
 } KernelEventFlag_t;

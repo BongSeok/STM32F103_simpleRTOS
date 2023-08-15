@@ -1,0 +1,5 @@
+../OS/kernel/Src/msg.c:12:6:Kernel_msgQ_init	16	static
+../OS/kernel/Src/msg.c:22:6:Kernel_msgQ_is_empty	16	static
+../OS/kernel/Src/msg.c:35:6:Kernel_msgQ_is_full	16	static
+../OS/kernel/Src/msg.c:48:6:Kernel_msgQ_enqueue	24	static
+../OS/kernel/Src/msg.c:67:6:Kernel_msgQ_dequeue	24	static

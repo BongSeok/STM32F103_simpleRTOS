@@ -1,4 +1,4 @@
-Core/Src/stm32f1xx_it.o: ../Core/Src/stm32f1xx_it.c ../Core/Inc/main.h \
+OS/kernel/Src/msg.o: ../OS/kernel/Src/msg.c ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -31,9 +31,6 @@ Core/Src/stm32f1xx_it.o: ../Core/Src/stm32f1xx_it.c ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_dma.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_gpio.h \
- ../Core/Inc/stm32f1xx_it.h \
- C:/Users/asus/STM32CubeIDE/workspace_1.12.0/STM32F103_simpleRTOS/OS/kernel/Inc/kernel.h \
- C:/Users/asus/STM32CubeIDE/workspace_1.12.0/STM32F103_simpleRTOS/OS/kernel/Inc/event.h \
  C:/Users/asus/STM32CubeIDE/workspace_1.12.0/STM32F103_simpleRTOS/OS/kernel/Inc/msg.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
@@ -68,7 +65,4 @@ Core/Src/stm32f1xx_it.o: ../Core/Src/stm32f1xx_it.c ../Core/Inc/main.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_pwr.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_dma.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_gpio.h:
-../Core/Inc/stm32f1xx_it.h:
-C:/Users/asus/STM32CubeIDE/workspace_1.12.0/STM32F103_simpleRTOS/OS/kernel/Inc/kernel.h:
-C:/Users/asus/STM32CubeIDE/workspace_1.12.0/STM32F103_simpleRTOS/OS/kernel/Inc/event.h:
 C:/Users/asus/STM32CubeIDE/workspace_1.12.0/STM32F103_simpleRTOS/OS/kernel/Inc/msg.h:

@@ -209,6 +209,7 @@ void USART1_IRQHandler(void)
 	LL_USART_TransmitData8(USART1, ch);
   /* USER CODE END USART1_IRQn 0 */
   /* USER CODE BEGIN USART1_IRQn 1 */
+	Kernel_send_msg(KernelMsgQ_Task0, &ch, 1);
 	Kernel_send_events(KernelEventFlag_UartIn);
   /* USER CODE END USART1_IRQn 1 */
 }

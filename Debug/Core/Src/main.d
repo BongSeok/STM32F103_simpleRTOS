@@ -34,6 +34,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/usart.h ../Core/Inc/main.h ../Core/Inc/gpio.h \
  C:/Users/asus/STM32CubeIDE/workspace_1.12.0/STM32F103_simpleRTOS/OS/kernel/Inc/kernel.h \
  C:/Users/asus/STM32CubeIDE/workspace_1.12.0/STM32F103_simpleRTOS/OS/kernel/Inc/event.h \
+ C:/Users/asus/STM32CubeIDE/workspace_1.12.0/STM32F103_simpleRTOS/OS/kernel/Inc/msg.h \
  C:/Users/asus/STM32CubeIDE/workspace_1.12.0/STM32F103_simpleRTOS/OS/kernel/Inc/task.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
@@ -73,4 +74,5 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/gpio.h:
 C:/Users/asus/STM32CubeIDE/workspace_1.12.0/STM32F103_simpleRTOS/OS/kernel/Inc/kernel.h:
 C:/Users/asus/STM32CubeIDE/workspace_1.12.0/STM32F103_simpleRTOS/OS/kernel/Inc/event.h:
+C:/Users/asus/STM32CubeIDE/workspace_1.12.0/STM32F103_simpleRTOS/OS/kernel/Inc/msg.h:
 C:/Users/asus/STM32CubeIDE/workspace_1.12.0/STM32F103_simpleRTOS/OS/kernel/Inc/task.h:
