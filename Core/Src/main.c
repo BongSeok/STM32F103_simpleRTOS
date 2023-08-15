@@ -63,6 +63,8 @@ static void Kernel_init(void);
 void User_task0(void);
 void User_task1(void);
 void User_task2(void);
+
+void HAL_Delay(uint32_t Delay);
 /* USER CODE END 0 */
 
 /**
@@ -157,7 +159,6 @@ static void Kernel_init(void)
 
 	Kernel_task_init();
 	Kernel_event_flag_init();
-	Kernel_msgQ_init();
 
 	taskId = Kernel_task_create(User_task0);
 	if(NOT_ENOUGH_TASK_NUM == taskId){
@@ -260,8 +261,27 @@ void User_task2(void)
 	vPrintString("User task #2 \r\n");
 
 	while(true){
-		Kernel_yield();
+		HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_6);
+		HAL_Delay(1000);
+		//Kernel_yield();
 	}
+}
+
+void HAL_Delay(uint32_t Delay)
+{
+  uint32_t tickstart = HAL_GetTick();
+  uint32_t wait = Delay;
+
+  /* Add a freq to guarantee minimum wait */
+  if (wait < HAL_MAX_DELAY)
+  {
+    wait += (uint32_t)(uwTickFreq);
+  }
+
+  while ((HAL_GetTick() - tickstart) < wait)
+  {
+	  Kernel_yield();
+  }
 }
 /* USER CODE END 4 */
 

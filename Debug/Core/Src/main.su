@@ -1,8 +1,9 @@
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usart.h:2083:22:LL_USART_EnableIT_RXNE	40	static,ignoring_inline_asm
-../Core/Src/main.c:72:5:main	8	static
-../Core/Src/main.c:118:6:SystemClock_Config	72	static
-../Core/Src/main.c:154:13:Kernel_init	16	static
-../Core/Src/main.c:180:6:User_task0	40	static
-../Core/Src/main.c:232:6:User_task1	32	static
-../Core/Src/main.c:258:6:User_task2	8	static
-../Core/Src/main.c:272:6:Error_Handler	4	static,ignoring_inline_asm
+../Core/Src/main.c:74:5:main	8	static
+../Core/Src/main.c:120:6:SystemClock_Config	72	static
+../Core/Src/main.c:156:13:Kernel_init	16	static
+../Core/Src/main.c:181:6:User_task0	40	static
+../Core/Src/main.c:233:6:User_task1	32	static
+../Core/Src/main.c:259:6:User_task2	8	static
+../Core/Src/main.c:270:6:HAL_Delay	24	static
+../Core/Src/main.c:292:6:Error_Handler	4	static,ignoring_inline_asm
