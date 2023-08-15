@@ -94,6 +94,7 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+  LL_USART_EnableIT_RXNE(USART1);
   vPrintString("simpleRTOS starting ... \r\n");
   Kernel_init();
   /* USER CODE END 2 */
@@ -154,6 +155,7 @@ static void Kernel_init(void)
 	uint32_t taskId;
 
 	Kernel_task_init();
+	Kernel_event_flag_init();
 
 	taskId = Kernel_task_create(User_task0);
 	if(NOT_ENOUGH_TASK_NUM == taskId){
@@ -175,24 +177,37 @@ static void Kernel_init(void)
 
 void User_task0(void)
 {
+	vPrintString("User task #0 \r\n");
+
 	while(true){
-		vPrintString("User task #0 \r\n");
+		KernelEventFlag_t handle_event = Kernel_wait_events(KernelEventFlag_UartIn);
+		switch(handle_event){
+		case KernelEventFlag_UartIn:
+			vPrintString("\r\nEvent handled \r\n");
+			break;
+		case KernelEventFlag_Empty:
+			break;
+		default:
+			break;
+		}
 		Kernel_yield();
 	}
 }
 
 void User_task1(void)
 {
+	vPrintString("User task #1 \r\n");
+
 	while(true){
-		vPrintString("User task #1 \r\n");
 		Kernel_yield();
 	}
 }
 
 void User_task2(void)
 {
+	vPrintString("User task #2 \r\n");
+
 	while(true){
-		vPrintString("User task #2 \r\n");
 		Kernel_yield();
 	}
 }

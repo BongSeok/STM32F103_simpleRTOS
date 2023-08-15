@@ -5,14 +5,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../OS/kernel/Src/event.c \
 ../OS/kernel/Src/kernel.c \
 ../OS/kernel/Src/task.c 
 
 OBJS += \
+./OS/kernel/Src/event.o \
 ./OS/kernel/Src/kernel.o \
 ./OS/kernel/Src/task.o 
 
 C_DEPS += \
+./OS/kernel/Src/event.d \
 ./OS/kernel/Src/kernel.d \
 ./OS/kernel/Src/task.d 
 
@@ -24,7 +27,7 @@ OS/kernel/Src/%.o OS/kernel/Src/%.su OS/kernel/Src/%.cyclo: ../OS/kernel/Src/%.c
 clean: clean-OS-2f-kernel-2f-Src
 
 clean-OS-2f-kernel-2f-Src:
-	-$(RM) ./OS/kernel/Src/kernel.cyclo ./OS/kernel/Src/kernel.d ./OS/kernel/Src/kernel.o ./OS/kernel/Src/kernel.su ./OS/kernel/Src/task.cyclo ./OS/kernel/Src/task.d ./OS/kernel/Src/task.o ./OS/kernel/Src/task.su
+	-$(RM) ./OS/kernel/Src/event.cyclo ./OS/kernel/Src/event.d ./OS/kernel/Src/event.o ./OS/kernel/Src/event.su ./OS/kernel/Src/kernel.cyclo ./OS/kernel/Src/kernel.d ./OS/kernel/Src/kernel.o ./OS/kernel/Src/kernel.su ./OS/kernel/Src/task.cyclo ./OS/kernel/Src/task.d ./OS/kernel/Src/task.o ./OS/kernel/Src/task.su
 
 .PHONY: clean-OS-2f-kernel-2f-Src
 

@@ -1,0 +1,4 @@
+event.c:11:6:Kernel_event_flag_init	1
+event.c:16:6:Kernel_event_flag_set	1
+event.c:21:6:Kernel_event_flag_clear	1
+event.c:26:6:Kernel_event_flag_check	2

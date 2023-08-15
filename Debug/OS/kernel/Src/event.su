@@ -1,0 +1,4 @@
+../OS/kernel/Src/event.c:11:6:Kernel_event_flag_init	4	static
+../OS/kernel/Src/event.c:16:6:Kernel_event_flag_set	16	static
+../OS/kernel/Src/event.c:21:6:Kernel_event_flag_clear	16	static
+../OS/kernel/Src/event.c:26:6:Kernel_event_flag_check	16	static

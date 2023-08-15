@@ -22,6 +22,7 @@
 #include "stm32f1xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "kernel.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -204,10 +205,11 @@ void SysTick_Handler(void)
 void USART1_IRQHandler(void)
 {
   /* USER CODE BEGIN USART1_IRQn 0 */
-
+	uint8_t ch = LL_USART_ReceiveData8(USART1);
+	LL_USART_TransmitData8(USART1, ch);
   /* USER CODE END USART1_IRQn 0 */
   /* USER CODE BEGIN USART1_IRQn 1 */
-
+	Kernel_send_events(KernelEventFlag_UartIn);
   /* USER CODE END USART1_IRQn 1 */
 }
 
