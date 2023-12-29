@@ -75,7 +75,7 @@ void HAL_Delay(uint32_t Delay);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+  //JIRA와 github 연동 테스트 1
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
